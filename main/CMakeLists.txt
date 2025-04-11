@@ -1,0 +1,10 @@
+idf_component_register(
+    SRCS 
+    "alea_jacta_est.c"
+    "rand/rand.c"
+    "buttons/button.c"
+    INCLUDE_DIRS
+     "."
+     "rand"
+     "buttons"
+     )
