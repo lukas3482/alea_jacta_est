@@ -126,7 +126,6 @@ void app_main(void){
     switchOnRtc20MClk();
     configure_led();
     randButtonInit();
-    cheatButtonInit();
 
     while (1) {
         if(randButtonPressed()){
@@ -137,8 +136,6 @@ void app_main(void){
             randomDice(true);
         }
 
-        //writeLed();
         vTaskDelay(1 / portTICK_PERIOD_MS);
-
     }
 }
