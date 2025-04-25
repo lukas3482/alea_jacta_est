@@ -3,8 +3,10 @@ idf_component_register(
     "alea_jacta_est.c"
     "rand/rand.c"
     "buttons/button.c"
+    "matrix/matrix.c"
     INCLUDE_DIRS
      "."
      "rand"
      "buttons"
+     "matrix"
      )
