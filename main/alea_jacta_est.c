@@ -18,12 +18,12 @@ static void randomDice(bool cheat){
     displayMatrix(rand);
 }
 
-bool randButtonPressed;
+volatile bool randButtonPressed = false;
 static void irq_randButtonPressed(buttonHandle_t* handle){
     randButtonPressed = true;
 }
 
-bool cheatButtonPressed;
+volatile bool cheatButtonPressed = false;
 static void irq_cheatButtonPressed(buttonHandle_t* handle){
     cheatButtonPressed = true;
 }
