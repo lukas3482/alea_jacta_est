@@ -32,7 +32,6 @@ void app_main(void){
     gpio_install_isr_service(0);
     switchOnRtc20MClk();
     configure_led();
-    //randButtonInit();
 
     buttonHandle_t randButtonHandle = {
         .pin = 9,
@@ -66,18 +65,4 @@ void app_main(void){
         }
         vTaskDelay(10 / portTICK_PERIOD_MS);
     }
-
-    /*
-    while (1) {
-        if(randButtonPressed()){
-            randomDice(false);
-        }
-
-        if(cheatButtonPressed()){
-            randomDice(true);
-        }
-
-        vTaskDelay(10 / portTICK_PERIOD_MS);
-    }
-        */
 }

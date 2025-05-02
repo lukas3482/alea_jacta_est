@@ -1,11 +1,6 @@
 #ifndef BUTTON_WOLL
 #define BUTTON_WOLL
 
-void randButtonInit();
-
-//bool randButtonPressed();
-//bool cheatButtonPressed();
-
 typedef enum {
     GPIO_MODE_IN,
     GPIO_MODE_OUT,
