@@ -1,5 +1,5 @@
-#ifndef RGB_matrix
-#define RGB_matrix
+#ifndef DICE_WOLL
+#define DICE_WOLL
 
 #include <inttypes.h>
 

@@ -6,7 +6,7 @@
 #include "sdkconfig.h"
 #include "rand/rand.h"
 #include "buttons/button.h"
-#include "matrix/matrix.h"
+#include "dice/dice.h"
 
 static const char *TAG = "example";
 
@@ -18,11 +18,56 @@ static void randomDice(bool cheat){
     displayMatrix(rand);
 }
 
+bool randButtonPressed;
+static void irq_randButtonPressed(buttonHandle_t* handle){
+    randButtonPressed = true;
+}
+
+bool cheatButtonPressed;
+static void irq_cheatButtonPressed(buttonHandle_t* handle){
+    cheatButtonPressed = true;
+}
+
 void app_main(void){
+    gpio_install_isr_service(0);
     switchOnRtc20MClk();
     configure_led();
-    randButtonInit();
+    //randButtonInit();
 
+    buttonHandle_t randButtonHandle = {
+        .pin = 9,
+        .mode = GPIO_MODE_IN,
+        .pullUp = true,
+        .pullDown = false,
+        .irqEnabled = true,
+        .callback = irq_randButtonPressed
+    };
+    initButton(&randButtonHandle);
+
+    buttonHandle_t cheatButtonHandle = {
+        .pin = 2,
+        .mode = GPIO_MODE_IN,
+        .pullUp = true,
+        .pullDown = false,
+        .irqEnabled = true,
+        .callback = irq_cheatButtonPressed
+    };
+    initButton(&cheatButtonHandle);
+
+    while(1){
+        if(randButtonPressed){
+            randButtonPressed = false;
+            randomDice(false);
+        }
+
+        if(cheatButtonPressed){
+            cheatButtonPressed = false;
+            randomDice(true);
+        }
+        vTaskDelay(10 / portTICK_PERIOD_MS);
+    }
+
+    /*
     while (1) {
         if(randButtonPressed()){
             randomDice(false);
@@ -34,4 +79,5 @@ void app_main(void){
 
         vTaskDelay(10 / portTICK_PERIOD_MS);
     }
+        */
 }

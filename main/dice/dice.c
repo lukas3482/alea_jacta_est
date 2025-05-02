@@ -1,4 +1,4 @@
-#include "matrix.h"
+#include "dice.h"
 #include "led_strip.h"
 #include "esp_log.h"
 #include "freertos/task.h"
@@ -83,7 +83,6 @@ void displayMatrix(uint8_t rand){
 }
 
 void configure_led(void){
-    //ESP_LOGI(TAG, "Example configured to blink addressable LED!");
     led_strip_config_t strip_config = {
         .strip_gpio_num = LED_GPIO,
         .max_leds = 25,
